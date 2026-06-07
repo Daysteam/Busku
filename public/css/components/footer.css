@@ -1,0 +1,7 @@
+.footer-link {
+    transition: ease 0.3s;
+}
+
+.footer-link:hover {
+    color: white !important;
+}

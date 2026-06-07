@@ -1,0 +1,166 @@
+.card{
+    border-radius:18px;
+}
+
+.stats-card{
+    transition:.3s;
+}
+
+.stats-card:hover{
+    transform:translateY(-5px);
+}
+
+.circle{
+    width:55px;
+    height:55px;
+}
+
+.green{
+    background:#d4fce8;
+    border:1px solid #46eb96;
+}
+
+.purple{
+    background:#f0d9fa;
+    border:1px solid #c340f7;
+}
+
+.red{
+    background:#ffd7d7;
+    border:1px solid #f02929;
+}
+
+.blue{
+    background:#d8e4ff;
+    border:1px solid #2e68f0;
+}
+
+.orange{
+    background:#ffe4d6;
+    border:1px solid #ff6b6b;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+}
+
+.shadow-sm{
+    box-shadow:0 4px 20px rgba(0,0,0,.05)!important;
+}
+
+.table-custom{
+    border-collapse:separate;
+    border-spacing:0;
+}
+
+.table-custom thead th{
+    background:#1A365D;
+    color:#fff;
+    padding:16px;
+    font-size:.9rem;
+    font-weight:600;
+    border:none;
+    white-space:nowrap;
+}
+
+.table-custom thead th:first-child{
+    border-top-left-radius:12px;
+}
+
+.table-custom thead th:last-child{
+    border-top-right-radius:12px;
+}
+
+.table-custom tbody td{
+    padding:16px;
+    border-color:#edf2f7;
+    vertical-align:middle;
+}
+
+.table-custom tbody tr{
+    transition:.25s ease;
+}
+
+.table-custom tbody tr:hover{
+    background:#f8fafc;
+}
+
+.badge{
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:600;
+}
+
+.badge-pending{
+    background:#fff3cd;
+    color:#856404;
+    border:1px solid #ffe69c;
+}
+
+.badge-paid{
+    background:#d1e7dd;
+    color:#0f5132;
+    border:1px solid #a3cfbb;
+}
+
+.badge-cancel{
+    background:#f8d7da;
+    color:#842029;
+    border:1px solid #f1aeb5;
+}
+
+.btn-action{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+}
+
+.btn-action i{
+    font-size:.95rem;
+}
+
+.form-control{
+    border-radius:10px;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.page-link{
+    border:none;
+    margin:0 3px;
+    border-radius:10px !important;
+    color:#1A365D;
+}
+
+.page-item.active .page-link{
+    background:#1A365D;
+    color:#fff;
+}
+
+.page-link:hover{
+    background:#e9ecef;
+}
+
+.preview {
+    object-fit: cover;
+}
+
+@media (max-width:768px){
+
+    .table-custom{
+        min-width:900px;
+    }
+
+    .btn-action{
+        width:34px;
+        height:34px;
+    }
+
+}
