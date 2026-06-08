@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test',function () {
+	return view('petugas.scan.index');
+});
 Route::get('/', [LandingController::class, 'index'])->name('landing-page');
 Route::get('/login',[AuthController::class,'showLogin'])->name('login-page');
 Route::get('/register',[AuthController::class, 'showRegister'])->name('register-page');
