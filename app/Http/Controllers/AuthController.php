@@ -26,7 +26,7 @@ class AuthController extends Controller
             }
 
             if ($role === 'petugas') {
-                return redirect()->intended('/petugas');
+                return redirect()->intended(route('scan.index'));
             }
 
             if ($role === 'customer') {

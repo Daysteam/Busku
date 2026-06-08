@@ -14,7 +14,8 @@ class BusController extends Controller
 
     public function index(Request $request){
         try {
-            $buses = Bus::when($request->search, function ($query) use ($request) {
+            $buses = Bus::with('user')
+            ->when($request->search, function ($query) use ($request) {
                 $query->where('nama_bus', 'LIKE', '%' . $request->search . '%');
             })
             ->latest()
@@ -98,5 +99,15 @@ class BusController extends Controller
             return back()
             ->with('error','Gagal menghapus bus');
         }
+    }
+
+    public function jadwal(){
+        $user = auth()->user();
+
+        $buses = Bus::with('rute')
+            ->where('user_id', $user->id)
+            ->get();
+        
+        return view('petugas.jadwal.index', compact('buses'));
     }
 }

@@ -17,6 +17,8 @@ class Pemesanan extends Model
         'jumlah_tiket',
         'total_harga',
         'status',
+        'kode_bus',
+        'qr_code'
     ];
 
     public function user():BelongsTo

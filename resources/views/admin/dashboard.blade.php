@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">2,000</h5>
+                    <h5 class="fw-bold mb-0">{{ $totalBus }}</h5>
                     <small class="text-muted">Jumlah Bus</small>
                 </div>
 
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">15,430</h5>
+                    <h5 class="fw-bold mb-0">{{ $totalTiket }}</h5>
                     <small class="text-muted">Tiket Terjual</small>
                 </div>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">8,542</h5>
+                    <h5 class="fw-bold mb-0">{{ $totalUser }}</h5>
                     <small class="text-muted">Jumlah User</small>
                 </div>
 
@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">350</h5>
+                    <h5 class="fw-bold mb-0">{{ $totalRute }}</h5>
                     <small class="text-muted">Jumlah Rute</small>
                 </div>
 
@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">25,120</h5>
+                    <h5 class="fw-bold mb-0">{{ $totalPenumpang }}</h5>
                     <small class="text-muted">Penumpang</small>
                 </div>
 
@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="ms-3">
-                    <h5 class="fw-bold mb-0">Rp 15.500.000</h5>
+                    <h5 class="fw-bold mb-0">Rp {{ number_format($totalPendapatan,'0',',','.') }}</h5>
                     <small class="text-muted">Pendapatan</small>
                 </div>
 
@@ -160,25 +160,25 @@
         <div class="row g-3">
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100">
+                <div class="border rounded-3 p-3 h-100 stats-card">
                     <h6 class="fw-semibold mb-1">Pemesanan Baru</h6>
-                    <h3 class="fw-bold text-primary mb-0">25</h3>
+                    <h3 class="fw-bold text-primary mb-0">{{ $totalTiketHariIni }}</h3>
                     <small class="text-muted">Hari ini</small>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100">
+                <div class="border rounded-3 p-3 h-100 stats-card">
                     <h6 class="fw-semibold mb-1">Menunggu Pembayaran</h6>
-                    <h3 class="fw-bold text-warning mb-0">12</h3>
+                    <h3 class="fw-bold text-warning mb-0">{{ $totalTiketDibayarHariIni }}</h3>
                     <small class="text-muted">Perlu diproses</small>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100">
+                <div class="border rounded-3 p-3 h-100 stats-card">
                     <h6 class="fw-semibold mb-1">Pendapatan Hari Ini</h6>
-                    <h3 class="fw-bold text-success mb-0">Rp 2.500.000</h3>
+                    <h3 class="fw-bold text-success mb-0">Rp {{ number_format($totalPendapatanHariIni,'0',',','.') }}</h3>
                     <small class="text-muted">Transaksi berhasil</small>
                 </div>
             </div>
@@ -198,7 +198,7 @@
             <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                 <h5 class="mb-0 fw-semibold">Tiket Terbaru</h5>
 
-                <a href="#" class="btn btn-sm btn-outline-primary">
+                <a href="{{ route('pemesanan.index') }}" class="btn btn-sm btn-outline-primary">
                     Lihat Semua
                 </a>
             </div>
@@ -207,7 +207,7 @@
 
                 <div class="table-responsive">
 
-                    <table class="table table-custom table-hover mb-0">
+                    <table class="table table-custom table-hover mb-0 text-center">
 
                         <thead>
                             <tr>
@@ -221,35 +221,39 @@
 
                         <tbody>
 
-                            <tr>
-                                <td>1</td>
-                                <td>Budi Santoso</td>
-                                <td>31 Mei 2026</td>
-                                <td>Jakarta</td>
-                                <td>
-                                    <span class="badge bg-success">Dibayar</span>
-                                </td>
-                            </tr>
+                            @forelse ($detailPemesanans as $index => $detailPemesanan)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $detailPemesanan->nama_penumpang }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($detailPemesanan->pemesanan->rute->tanggal_berangkat)->format('d/m/Y') }}</td>
+                                    <td>{{ $detailPemesanan->pemesanan->rute->kota_tujuan }}</td>
+                                    <td>
+                                            @switch($detailPemesanan->pemesanan->status)
+                                                @case('pending')
+                                                    <span class="badge badge-pending">
+                                                        Pending
+                                                    </span>
+                                                @break
 
-                            <tr>
-                                <td>2</td>
-                                <td>Siti Aminah</td>
-                                <td>30 Mei 2026</td>
-                                <td>Bandung</td>
-                                <td>
-                                    <span class="badge bg-warning text-dark">Pending</span>
-                                </td>
-                            </tr>
+                                                @case('dibayar')
+                                                    <span class="badge badge-paid">
+                                                        Dibayar
+                                                    </span>
+                                                @break
 
-                            <tr>
-                                <td>3</td>
-                                <td>Andi Saputra</td>
-                                <td>29 Mei 2026</td>
-                                <td>Yogyakarta</td>
-                                <td>
-                                    <span class="badge bg-danger">Batal</span>
-                                </td>
-                            </tr>
+                                                @case('batal')
+                                                    <span class="badge badge-cancel">
+                                                        Batal
+                                                    </span>
+                                                @break
+                                            @endswitch
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5">Tidak ada data</td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
 
@@ -270,7 +274,7 @@
             <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                 <h5 class="mb-0 fw-semibold">Bus Terbaru</h5>
 
-                <a href="#" class="btn btn-sm btn-outline-primary">
+                <a href="{{ route('bus.index') }}" class="btn btn-sm btn-outline-primary">
                     Lihat Semua
                 </a>
             </div>
@@ -279,45 +283,31 @@
 
                 <div class="table-responsive">
 
-                    <table class="table table-custom table-hover mb-0">
+                    <table class="table table-custom table-hover mb-0 text-center">
 
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Nama Bus</th>
+                                <th>Kode Bus</th>
                                 <th>Kapasitas</th>
-                                <th>Status</th>
                             </tr>
                         </thead>
 
                         <tbody>
 
-                            <tr>
-                                <td>1</td>
-                                <td>Bus Nusantara</td>
-                                <td>45 Kursi</td>
-                                <td>
-                                    <span class="badge bg-success">Aktif</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>2</td>
-                                <td>Bus Harapan Jaya</td>
-                                <td>50 Kursi</td>
-                                <td>
-                                    <span class="badge bg-success">Aktif</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>3</td>
-                                <td>Bus Sinar Jaya</td>
-                                <td>40 Kursi</td>
-                                <td>
-                                    <span class="badge bg-secondary">Maintenance</span>
-                                </td>
-                            </tr>
+                            @forelse ($buses as $index => $bus)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $bus->nama_bus }}</td>
+                                    <td>{{ $bus->kode_bus }}</td>
+                                    <td>{{ $bus->jumlah_kursi }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">Tidak ada data</td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
 

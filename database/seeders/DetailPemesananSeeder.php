@@ -13,6 +13,6 @@ class DetailPemesananSeeder extends Seeder
      */
     public function run(): void
     {
-        DetailPemesanan::factory()->count(10)->create();
+        DetailPemesanan::factory()->count(100)->create();
     }
 }

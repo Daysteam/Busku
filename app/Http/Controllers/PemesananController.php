@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPemesanan;
 use App\Models\Pemesanan;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class PemesananController extends Controller
 {
     public function index(Request $request){
         try {
-            $pemesanans = Pemesanan::with('user')
+            $pemesanans = Pemesanan::with(['user','rute'])
                 ->whereHas('user', function ($query) use ($request) {
                     $query->where('username', 'LIKE', '%' . $request->nama . '%');
                 })
@@ -58,7 +59,8 @@ class PemesananController extends Controller
     }
 
     public function show(Pemesanan $pemesanan){
-        return view('admin.pemesanan.show', compact('pemesanan'));
+        $detailPemesanans = DetailPemesanan::where('pemesanan_id', $pemesanan->id)->get();
+        return view('admin.pemesanan.show', compact(['pemesanan','detailPemesanans']));
     }
 
     public function destroy(Pemesanan $pemesanan)

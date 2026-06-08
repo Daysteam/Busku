@@ -10,6 +10,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\PenumpangController;
 use App\Http\Controllers\RuteController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/test',function () {
-	return view('petugas.scan.index');
-});
+
 Route::get('/', [LandingController::class, 'index'])->name('landing-page');
 Route::get('/login',[AuthController::class,'showLogin'])->name('login-page');
 Route::get('/register',[AuthController::class, 'showRegister'])->name('register-page');
@@ -49,6 +48,13 @@ Route::middleware(['auth'])->group(function () {
             ]);
 
 
+    });
+
+    Route::middleware(['check_role:petugas'])->group(function () {
+        Route::get('/scan-qr',[ScanController::class,'index'])->name('scan.index');
+        Route::post('/scan-qr',[ScanController::class,'index'])->name('scan.scan');
+        Route::get('/penumpang',[PenumpangController::class,'index'])->name('penumpang.index');
+        Route::get('/jadwal', [BusController::class, 'jadwal'])->name('jadwal.index');
     });
 
     Route::get('/account',[AccountController::class,'edit'])->name('account.edit');

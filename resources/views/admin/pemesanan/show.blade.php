@@ -39,11 +39,11 @@
                     <div>
 
                         <small class="text-muted">
-                            Kode Bus
+                            Kode Pemesanan
                         </small>
 
                         <h5 class="fw-bold mb-0">
-                            {{ $pemesanan->rute->bus->kode_bus }}
+                            {{ $pemesanan->kode_pemesanan }}
                         </h5>
 
                     </div>
@@ -120,6 +120,51 @@
                         </div>
 
                     </div>
+
+                    @foreach ($detailPemesanans as $detailPemesanan)
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+    
+                                <small class="text-muted">
+                                    Nama Penumpang
+                                </small>
+    
+                                <div class="fw-semibold">
+                                    {{ $detailPemesanan->nama_penumpang }}
+                                </div>
+    
+                            </div>
+    
+                            <div class="col-md-6 mb-3">
+    
+                                <small class="text-muted">
+                                    Jenis Kelamin
+                                </small>
+    
+                                <div class="fw-semibold">
+                                    {{ $detailPemesanan->jenis_kelamin }}
+                                </div>
+    
+                            </div>
+    
+                            <div class="col-md-6 mb-3">
+    
+                                <small class="text-muted">
+                                    Umur
+                                </small>
+    
+                                <div class="fw-semibold">
+                                    {{ $detailPemesanan->umur }}
+                                </div>
+    
+                            </div>
+
+                        </div>
+                    @endforeach
 
                 </div>
 

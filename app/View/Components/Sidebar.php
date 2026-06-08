@@ -16,27 +16,30 @@ class Sidebar extends Component
      */
     public function __construct()
     {
+        
         if(auth()->user()->role === RoleEnum::ADMIN->value){
             $this->home_link = route('dashboard-admin');
             $this->links = [
-                ['url' => route('dashboard-admin'), 'label' => 'Dashboard', 'route' => 'admin.*', 'icon' => 'bi-speedometer2'],
+                ['url' => route('dashboard-admin'), 'label' => 'Dashboard', 'route' => 'dashboard-admin', 'icon' => 'bi-speedometer2'],
                 ['url' => route('bus.index'), 'label' => 'Kelola Bus', 'route' => 'bus.*', 'icon' => 'bi-bus-front'],
                 ['url' => route('user.index'), 'label' => 'Kelola User', 'route' => 'user.*', 'icon' => 'bi-people'],
                 ['url' => route('rute.index'), 'label' => 'Kelola Rute', 'route' => 'rute.*', 'icon' => 'bi-geo-alt'],
                 ['url' => route('pemesanan.index'), 'label' => 'Kelola Tiket', 'route' => 'pemesanan.*', 'icon' => 'bi-ticket'],
-                ['url' => route('account.edit'), 'label' => 'Akun Saya', 'route' => 'account.*', 'icon' => 'bi-people'],
+                ['url' => route('account.edit'), 'label' => 'Akun Saya', 'route' => 'account.*', 'icon' => 'bi-person'],
             ];
         } elseif(auth()->user()->role === RoleEnum::PETUGAS->value){
             $this->links = [
-                ['url' => 'dashboard', 'label' => 'dashboard'],
-                ['url' => 'scan', 'label' => 'Scan'],
-                ['url' => 'jadwal', 'label' => 'Jadwal']
+                ['url' => route('scan.index'), 'label' => 'Scan Tiket', 'route' => 'scan.*', 'icon' => 'bi-qr-code-scan'],
+                ['url' => route('penumpang.index'), 'label' => 'Data Penumpang', 'route' => 'penumpang.*', 'icon' => 'bi-people'],
+                ['url' => route('jadwal.index'), 'label' => 'Jadwal', 'route' => 'jadwal.index', 'icon' => 'bi-calendar-event'],
+                ['url' => route('account.edit'), 'label' => 'Akun Saya', 'route' => 'account.*', 'icon' => 'bi-person'],
             ];
         } elseif(auth()->user()->role === RoleEnum::CUSTOMER->value) {
             $this->links = [
                 ['url' => 'dashboard', 'label' => 'Dashbaord'],
                 ['url' => 'Cari bus', 'label' => 'Cari Bus'],
-                ['url' => 'Pemesanan', 'label' => 'Pemesanan']
+                ['url' => 'Pemesanan', 'label' => 'Pemesanan'],
+                ['url' => route('account.edit'), 'label' => 'Akun Saya', 'route' => 'account.*', 'icon' => 'bi-person'],
             ];
         }
     }

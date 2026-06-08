@@ -21,15 +21,13 @@ class Footer extends Component
         if(auth()->check()){
             if(auth()->user()->role === RoleEnum::ADMIN->value){
                 $this->links = [
-                    // ini ganti
-                    ['url' => '#dashboard', 'label' => 'Dashbaord'],
-                    ['url' => '#kelolaBus', 'label' => 'Kelola Bus'],
-                    ['url' => '$kelolaJadwal', 'label' => 'Kelola Jadwal'],
-                    ['url' => '#kelolaTiket', 'label' => 'Kelola Tiket'],
-                    ['url' => '#kelolaPenumpnag', 'label' => 'Kelola Penumpang'],
-                    ['url' => '#tambahPetugas', 'label' => 'Kelola Petugas'],
-                    ['url' => '#laporan', 'label' => 'Laporan']
-                ];
+                ['url' => route('dashboard-admin'), 'label' => 'Dashboard'],
+                ['url' => route('bus.index'), 'label' => 'Kelola Bus'],
+                ['url' => route('user.index'), 'label' => 'Kelola User'],
+                ['url' => route('rute.index'), 'label' => 'Kelola Rute'],
+                ['url' => route('pemesanan.index'), 'label' => 'Kelola Tiket'],
+                ['url' => route('account.edit'), 'label' => 'Akun Saya'],
+            ];
             } elseif (auth()->user()->role === RoleEnum::PETUGAS->value) {
                 $this->links = [
                     ['url' => 'dashboard', 'label' => 'dashboard'],
