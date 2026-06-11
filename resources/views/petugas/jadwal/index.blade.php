@@ -31,19 +31,20 @@
 
                 <tbody>
 
-                    @forelse ($buses as $bus)
-                        @foreach ($bus->rute as $rute)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $rute->kota_asal }}</td>
-                                <td>{{ $rute->kota_tujuan }}</td>
-                                <td>{{ \Carbon\Carbon::parse($rute->tanggal_berangkat)->format('d/m/Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($rute->jam_berangkat)->format('H:i') }}</td>
-                            </tr>
-                        @endforeach
+                    @forelse ($rutes as $index => $rute)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $rute->kota_asal }}</td>
+                            <td>{{ $rute->kota_tujuan }}</td>
+                            <td>{{ \Carbon\Carbon::parse($rute->tanggal_berangkat)->format('d/m/Y') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($rute->jam_berangkat)->format('H:i') }}</td>
+                        </tr>
                     @empty
                         <tr>
-                            <td colspan="5">Tidak ada data</td>
+                            <td colspan="5" class="py-5 text-muted">
+                                <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                Tidak ada data user
+                            </td>
                         </tr>
                     @endforelse
 
@@ -53,5 +54,6 @@
         </div>
 
     </div>
+
 
 @endsection
