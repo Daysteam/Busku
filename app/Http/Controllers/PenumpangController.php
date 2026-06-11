@@ -14,7 +14,10 @@ class PenumpangController extends Controller
 
             $penumpangs = DetailPemesanan::with('pemesanan.rute.bus')
                 ->whereHas('pemesanan.rute.bus', function ($query) use ($user) {
-                    $query->where('user_id', $user);
+                    $query->where('user_id', $user->id);
+                })
+                ->whereHas('pemesanan.rute', function ($query) {
+                    $query->whereDate('tanggal_berangkat', \Carbon\Carbon::today());
                 })
                 ->when($request->search, function ($query) use ($request) {
                     $query->where('nama_penumpang', 'LIKE', '%' . $request->search . '%');

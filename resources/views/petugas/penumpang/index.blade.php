@@ -1,6 +1,6 @@
 @extends('layout.dashboard')
 
-@section('title','BusKu | Petugas Mencari Penumpang')
+@section('title', 'BusKu | Petugas Mencari Penumpang')
 
 @section('content')
 
@@ -28,10 +28,11 @@
 
                 <div class="input-group">
 
-                    <input type="search" name="search" value="{{ request('search') }}" class="form-control" placeholder="Masukan Nama Penumpang...">
+                    <input type="search" name="search" value="{{ request('search') }}" class="form-control"
+                        placeholder="Masukan Nama Penumpang...">
 
                     <button class="btn btn-primary" type="submit">
-                        
+
                         <i class="bi bi-search ms-1">
 
                         </i>
@@ -50,14 +51,14 @@
 
     </div>
 
-    <div class="card border-0 shadow-sm mt-4">
+    <div class="card border-0 shadow-sm mt-4 mb-2">
 
         <div class="card-body">
 
             <div class="table-responsive">
 
                 <table class="table table-custom text-center">
-                    
+
                     <thead>
 
                         <tr>
@@ -80,7 +81,10 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4 text-center">Tidak Ada Data</td>
+                                <td colspan="4" class="py-5 text-muted">
+                                    <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                    Tidak ada data user
+                                </td>
                             </tr>
                         @endforelse
 
