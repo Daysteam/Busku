@@ -176,18 +176,6 @@
         </script>
     @endif
     
-    <script>
-        document.getElementById('image').addEventListener('change', function() {
-
-            const file = this.files[0];
-
-            if (file) {
-                document.getElementById('preview').src =
-                    URL.createObjectURL(file);
-            }
-
-        });
-    </script>
 </body>
 
 </html>
