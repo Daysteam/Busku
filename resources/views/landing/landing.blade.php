@@ -18,25 +18,27 @@
 
                     <p class="lead my-4">
                         Cari jadwal, beli tiket
-                        nikmati perjalananmu bersama 
+                        nikmati perjalananmu bersama
                         kami.
                     </p>
 
-                    <button class="btn btn-primary btn-lg">
+                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg">
                         Pesan Sekarang
-                    </button>
+                    </a>
 
                 </div>
 
                 <div class="col-lg-6">
 
-                    <div class="search-card p-4 text-white">
+                    <div class="p-4 text-white">
 
                         <h4 class="mb-4">
                             Cari Tiket Bus
                         </h4>
 
-                        <form>
+                        <form action="{{ route('search-bus.index') }}" method="GET">
+
+                            @csrf
 
                             <div class="input-group mb-3">
 
@@ -44,12 +46,13 @@
                                     <i class="bi bi-box-arrow-in-right"></i>
                                 </span>
 
-                                <div class="form-floating flex-grow-1">
+                                <div class="form-floating">
 
-                                    <select class="form-select">
-                                        <option>Jakarta</option>
-                                        <option>Bandung</option>
-                                        <option>Surabaya</option>
+                                    <select class="form-select" name="kota_asal">
+                                        <option value="">Pilih Kota Asal</option>
+                                        @foreach ($kotaAsals as $kotaAsal)
+                                            <option value="{{ $kotaAsal }}">{{ $kotaAsal }}</option>
+                                        @endforeach
                                     </select>
 
                                     <label class="text-muted">Dari</label>
@@ -64,12 +67,13 @@
                                     <i class="bi bi-box-arrow-right"></i>
                                 </span>
 
-                                <div class="form-floating flex-grow-1">
+                                <div class="form-floating">
 
-                                    <select class="form-select">
-                                        <option>Malang</option>
-                                        <option>Yogyakarta</option>
-                                        <option>Semarang</option>
+                                    <select class="form-select" name="kota_tujuan">
+                                        <option value="">Pilih Kota Tujuan</option>
+                                        @foreach ($kotaTujuans as $kotaTujuan)
+                                            <option value="{{ $kotaTujuan }}">{{ $kotaTujuan }}</option>
+                                        @endforeach
                                     </select>
 
                                     <label class="text-muted">Ke</label>
@@ -84,12 +88,9 @@
                                     <i class="bi bi-calendar"></i>
                                 </span>
 
-                                <div class="form-floating flex-grow-1">
+                                <div class="form-floating">
 
-                                    <input
-                                        type="date"
-                                        class="form-control"
-                                        id="tanggal">
+                                    <input type="date" class="form-control" id="tanggal" name="tanggal_berangkat">
 
                                     <label class="text-muted">
                                         Tanggal Berangkat
@@ -99,8 +100,7 @@
 
                             </div>
 
-                            <button
-                                class="btn btn-primary w-100 py-3">
+                            <button class="btn btn-primary w-100 py-3" type="submit">
                                 Cari Bus
                             </button>
 
@@ -123,7 +123,7 @@
             <div class="col-md-3">
 
                 <div class="card static-card">
-    
+
                     <div class="card-body text-center">
 
                         <h5 class="fs-4 fw-bolder m-0">50+</h5>
@@ -131,14 +131,14 @@
                         <p class="text-muted m-0">Bus Aktif</p>
 
                     </div>
-    
+
                 </div>
 
             </div>
             <div class="col-md-3">
 
                 <div class="card static-card">
-    
+
                     <div class="card-body text-center">
 
                         <h5 class="fs-4 fw-bolder m-0">100+</h5>
@@ -146,7 +146,7 @@
                         <p class="text-muted m-0">Rute Aktif</p>
 
                     </div>
-    
+
                 </div>
 
             </div>
@@ -154,7 +154,7 @@
             <div class="col-md-3">
 
                 <div class="card static-card">
-    
+
                     <div class="card-body text-center">
 
                         <h5 class="fs-4 fw-bolder m-0">10K +</h5>
@@ -162,7 +162,7 @@
                         <p class="text-muted m-0">User Aktif</p>
 
                     </div>
-    
+
                 </div>
 
             </div>
@@ -170,7 +170,7 @@
             <div class="col-md-3">
 
                 <div class="card static-card">
-    
+
                     <div class="card-body text-center">
 
                         <h5 class="fs-4 fw-bolder m-0">20K +</h5>
@@ -178,7 +178,7 @@
                         <p class="text-muted m-0">Tiket Terjual</p>
 
                     </div>
-    
+
                 </div>
 
             </div>
@@ -194,7 +194,7 @@
             <div class="text-center mb-4">
 
                 <h4 class="fs-4 fw-bolder">Mengapa Memilih Kami?</h4>
-    
+
                 <p class="text-muted">Layanan terbaik untuk perjalanan anda</p>
 
             </div>
@@ -204,7 +204,7 @@
                 <div class="col-md-4">
 
                     <div class="card static-card">
-        
+
                         <div class="card-body text-center">
 
                             <div class="icon-box mx-auto">
@@ -213,13 +213,13 @@
                                 </i>
 
                             </div>
-                            
+
                             <h4 class="mb-1">Pembayaran Aman</h4>
 
                             <p>Semua Transaksi Terlindungi</p>
 
                         </div>
-        
+
                     </div>
 
                 </div>
@@ -227,7 +227,7 @@
                 <div class="col-md-4">
 
                     <div class="card static-card">
-        
+
                         <div class="card-body text-center">
 
                             <div class="icon-box mx-auto">
@@ -236,13 +236,13 @@
                                 </i>
 
                             </div>
-                            
+
                             <h4 class="mb-1">Cepat dan Praktis</h4>
 
                             <p>Pemesanan tiket yang praktis dan cepat</p>
 
                         </div>
-        
+
                     </div>
 
                 </div>
@@ -250,7 +250,7 @@
                 <div class="col-md-4">
 
                     <div class="card static-card">
-        
+
                         <div class="card-body text-center">
 
                             <div class="icon-box mx-auto">
@@ -259,13 +259,13 @@
                                 </i>
 
                             </div>
-                            
+
                             <h4 class="mb-1">Support 24 Jam</h4>
 
                             <p>Tim kami siap membantu kapan saja</p>
 
                         </div>
-        
+
                     </div>
 
                 </div>
@@ -283,32 +283,44 @@
             <div class="text-center mb-4">
 
                 <h4 class="fs-4 fw-bolder">Bus Yang Tersedia</h4>
-    
+
                 <p class="text-muted">Mulailah perjalananmu dengan bus kami</p>
 
             </div>
 
             <div class="row g-3">
 
-                <div class="col-md-4">
+                @forelse ($buses as $bus)
+                    <div class="col-md-4">
 
-                    <div class="card static-card">
+                        <div class="card static-card">
 
-                        <img src="{{ asset('images/bus.jpg') }}" alt="" class="card-img-top">
-        
-                        <div class="card-body">
+                            <img src="{{ $bus->image ? asset('storage/' . $bus->image) : 'https://placehold.co/600x400?text=Image+Not+Found' }}" class="card-img-top">
 
-                            <h4>Sinary Jaya</h4>
+                            <div class="card-body">
 
-                            <p class="text-muted">Jakarta -> Jember</p>
+                                <h4 class="fw-bold">{{ $bus->nama_bus }}</h4>
 
-                            <a href="" class="btn btn-primary px-2">Lihat Jadwal</a>
+                                <p class="text-muted">{{ $bus->ruteUtama?->kota_asal }} <i class="bi bi-arrow-right mx-2"></i> {{ $bus->ruteUtama?->kota_tujuan }}</p>
+
+                                <a href="{{ route('search-bus.create', $bus->ruteUtama?->id) }}" class="btn btn-primary px-2">Pesan Sekarang</a>
+
+                            </div>
 
                         </div>
-        
-                    </div>
 
-                </div>
+                    </div>
+                @empty
+                    <div class="col">
+
+                        <div class="card">
+
+                            <div class="card-body text-center">Tidak ada bus yang tersedia</div>
+
+                        </div>
+
+                    </div>
+                @endforelse
 
             </div>
 
