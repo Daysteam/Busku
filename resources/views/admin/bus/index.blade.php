@@ -85,7 +85,7 @@
                         @forelse ($buses as $index => $bus)
                             <tr>
                                 <td>{{ $buses->firstItem() + $index }}</td>
-                                <td class="d-flex jusitfy-content-center align-items-center">
+                                <td class="d-flex jusitfy-content-center align-items-center gap-2">
                                     <img src="{{ $bus->image ? asset('storage/' . $bus->image) : 'https://placehold.co/600x400?text=Not+Found' }}" alt="" height="100px" width="170px" class="rounded">
                                     <p>{{ $bus->nama_bus }}</p>
                                 </td>
@@ -114,7 +114,12 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-muted">Tidak ada Data</td>
+                                <tr>
+                                    <td colspan="7" class="py-5 text-muted">
+                                        <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                        Tidak ada data bus
+                                    </td>
+                                </tr>
                             </tr>
                         @endforelse
 

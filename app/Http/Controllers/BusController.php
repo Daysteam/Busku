@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleEnum;
 use App\Http\Requests\StoreBusRequest;
 use App\Http\Requests\UpdateBusRequest;
 use App\Models\Bus;
+use App\Models\Rute;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -31,7 +33,7 @@ class BusController extends Controller
 
     public function create(){
 
-        $users = User::all();
+        $users = User::where('role', RoleEnum::PETUGAS->value)->get();
         return view('admin.bus.create',compact('users'));
     }
 
@@ -54,7 +56,7 @@ class BusController extends Controller
     }
 
     public function edit(Bus $bus){
-        $users = User::all();
+        $users = User::where('role', RoleEnum::PETUGAS->value)->get();
 
         return view('admin.bus.edit',compact(['bus','users']));
     }
@@ -104,10 +106,17 @@ class BusController extends Controller
     public function jadwal(){
         $user = auth()->user();
 
-        $buses = Bus::with('rute')
-            ->where('user_id', $user->id)
+        $userId = auth()->id();
+
+        $rutes = Rute::with('bus')
+            ->whereHas('bus', function ($q) use ($userId) {
+                $q->where('user_id', $userId);
+            })
+            ->whereDate('tanggal_berangkat', \Carbon\Carbon::today())
+            ->orderBy('tanggal_berangkat')
+            ->orderBy('jam_berangkat')
             ->get();
         
-        return view('petugas.jadwal.index', compact('buses'));
+        return view('petugas.jadwal.index', compact('rutes'));
     }
 }

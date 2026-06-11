@@ -8,8 +8,9 @@
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
 
-            <a href="{{ route('bus.index') }}" class="btn btn-secondary px-2">
+            <a href="{{ route('bus.index') }}" class="btn btn-outline-secondary">
 
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
 
             </a>
@@ -20,7 +21,7 @@
 
                     <h5 class="my-3 text-start text-md-center">Tambah Bus</h5>
 
-                    <form action="{{ route('bus.store') }}" method="post">
+                    <form action="{{ route('bus.store') }}" method="post" enctype="multipart/form-data">
 
                         @csrf
 
@@ -176,5 +177,18 @@
         </div>
 
     </div>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function() {
+
+            const file = this.files[0];
+
+            if (file) {
+                document.getElementById('preview').src =
+                    URL.createObjectURL(file);
+            }
+
+        });
+    </script>
 
 @endsection

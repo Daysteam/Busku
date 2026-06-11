@@ -8,8 +8,9 @@
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
 
-            <a href="{{ route('bus.index') }}" class="btn btn-secondary px-2">
+            <a href="{{ route('bus.index') }}" class="btn btn-outline-secondary">
 
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
 
             </a>
@@ -150,7 +151,7 @@
 
                                 <img src="{{ $bus->image ? asset('storage/' . $bus->image) : 'https://placehold.co/600x400?text=Preview' }}"
                                     id="preview" class="img-fluid mb-3 preview">
-                                    
+
 
                                 <input type="file" name="image" id="image" placeholder="0"
                                     class="form-control @error('images') is-invalid @enderror">
@@ -182,5 +183,18 @@
         </div>
 
     </div>
+
+    <script>
+        document.getElementById('image').addEventListener('change', function() {
+
+            const file = this.files[0];
+
+            if (file) {
+                document.getElementById('preview').src =
+                    URL.createObjectURL(file);
+            }
+
+        });
+    </script>
 
 @endsection
