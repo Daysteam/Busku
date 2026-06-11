@@ -11,13 +11,19 @@ class ScanController extends Controller
 
         $user = auth()->user();
 
-        $totalTiketSudah = Pemesanan::where('status', 'digunakan')
+        $totalTiketSudah = Pemesanan::where('status', 'selesai')
+            ->whereHas('rute', function ($query) {
+                $query->whereDate('tanggal_berangkat', \Carbon\Carbon::today());
+            })
             ->whereHas('rute.bus', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             })
             ->count();
 
         $totalTiketBelum = Pemesanan::where('status', 'dibayar')
+            ->whereHas('rute', function ($query) {
+                    $query->whereDate('tanggal_berangkat', \Carbon\Carbon::today());
+                })
             ->whereHas('rute.bus', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
             })
@@ -33,34 +39,55 @@ class ScanController extends Controller
             $pemesanan = Pemesanan::with('rute.bus')->where('qr_code', $request->qr_code)->first();
 
             if(!$pemesanan){
-                return back()->with('error','QR code tidak ditemukan');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'QR code tidak ditemukan'
+                ], 404);
             }
 
             $user = auth()->user();
 
             if(!$pemesanan->rute?->bus) {
-                return back()->with('error','Tidak ada data bus');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tidak ada data bus'
+                ], 400);
             }
 
             if($pemesanan->rute->bus->user_id != $user->id){
-                return back()->with('error','Tiket ini bukan untuk bus anda');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiket ini bukan untuk bus anda'
+                ], 403);
             }
 
             if($pemesanan->status === 'selesai'){
-                return back()->with('error','Tiket sudah digunakan');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiket sudah digunakan'
+                ], 400);
             }
 
             if($pemesanan->status === 'pending'){
-                return back()->with('error','Tiket tidak valid');
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiket belum boleh digunakan'
+                ], 400);
             }
 
             $pemesanan->update([
                 'status' => 'selesai'
             ]);
 
-            return back()->with('success','Berhasil scan tiket');
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil scan tiket'
+            ]);
         } catch (\Exception $e) {
-            return back()->with('error','Gagal scan tiket');
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal scan tiket'
+            ], 500);
         }
     }
 }
