@@ -23,8 +23,8 @@ class UpdateRuteRequest extends FormRequest
     {
         return [
             'bus_id' => 'required|exists:buses,id',
-            'kota_tujuan' => 'required|string',
-            'kota_asal' => 'required|string',
+            'kota_tujuan' => 'required|string|different:kota_asal',
+            'kota_asal' => 'required|string|different:kota_tujuan',
             'tanggal_berangkat' => 'required|date',
             'jam_berangkat' => 'required|date_format:H:i',
             'harga' => 'required|numeric|min:1000'
@@ -38,6 +38,8 @@ class UpdateRuteRequest extends FormRequest
             'bus_id.exists' => 'Nama Bus tidak ada',
             'kota_tujuan.required' => 'Kota Tujuan harus diisi',
             'kota_tujuan.string' => 'Kota Tujuan harus berbentuk teks',
+            'kota_tujuan.different' => 'Kota asal dan kota tujuan tidak boleh sama.',
+            'kota_asal.different' => 'Kota asal dan kota tujuan tidak boleh sama.',
             'kota_asal.required' => 'Kota Asal harus diisi',
             'kota_asal.string' => 'Kota Asal harus berbentuk teks',
             'tanggal_berangkat.required' => 'Tanggal Berangkat harus diisi',

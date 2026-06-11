@@ -8,8 +8,9 @@
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
 
-            <a href="{{ route('rute.index') }}" class="btn btn-secondary px-2">
+            <a href="{{ route('rute.index') }}" class="btn btn-outline-secondary">
 
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
 
             </a>
@@ -30,14 +31,13 @@
 
                             <label for="bus_id" class="form-label">Nama Bus</label>
 
-                            <select name="bus_id" id="bus_id"
-                                class="form-select @error('bus_id') is-invalid @enderror">
+                            <select name="bus_id" id="bus_id" class="form-select @error('bus_id') is-invalid @enderror">
 
                                 <option value="">-- Pilih Bus --</option>
 
                                 @forelse ($buses as $bus)
                                     <option value="{{ $bus->id }}"
-                                        {{ old('bus_id',$rute->bus_id) == $bus->id ? 'selected' : '' }}>
+                                        {{ old('bus_id', $rute->bus_id) == $bus->id ? 'selected' : '' }}>
                                         {{ $bus->nama_bus }}</option>
                                 @empty
                                     <option value="">-- Tidak Ada Bus --</option>
@@ -46,13 +46,11 @@
                             </select>
 
                             @error('bus_id')
-
                                 <div class="invalid-feedback d-block">
 
                                     {{ $message }}
 
                                 </div>
-
                             @enderror
 
                         </div>
@@ -101,7 +99,8 @@
 
                             <input type="date" name="tanggal_berangkat" id="tanggal_berangkat"
                                 class="form-control @error('tanggal_berangkat') is-invalid @enderror"
-                                placeholder="Masukan Tanggal Berangkat" value="{{ old('tanggal_berangkat', $rute->tanggal_berangkat) }}">
+                                placeholder="Masukan Tanggal Berangkat"
+                                value="{{ old('tanggal_berangkat', $rute->tanggal_berangkat) }}">
 
                             @error('tanggal_berangkat')
                                 <div class="invalid-feedback d-block">
@@ -110,7 +109,7 @@
 
                                 </div>
                             @enderror
-                            
+
                         </div>
 
                         <div class="mb-3">
@@ -119,7 +118,8 @@
 
                             <input type="time" name="jam_berangkat" id="jam_berangkat"
                                 class="form-control @error('jam_berangkat') is-invalid @enderror"
-                                placeholder="Masukan Jam Berangkat" value="{{ old('jam_berangkat', \Carbon\Carbon::parse($rute->jam_berangkat)->format('H:i') ) }}">
+                                placeholder="Masukan Jam Berangkat"
+                                value="{{ old('jam_berangkat', \Carbon\Carbon::parse($rute->jam_berangkat)->format('H:i')) }}">
 
                             @error('jam_berangkat')
                                 <div class="invalid-feedback d-block">
@@ -130,14 +130,14 @@
                             @enderror
 
                         </div>
-                        
+
                         <div class="mb-3">
 
                             <label for="harga" class="form-label">Harga</label>
 
                             <input type="number" name="harga" id="harga"
-                                class="form-control @error('harga') is-invalid @enderror"
-                                placeholder="Masukan Harga.." value="{{ old('harga', $rute->harga) }}">
+                                class="form-control @error('harga') is-invalid @enderror" placeholder="Masukan Harga.."
+                                value="{{ old('harga', $rute->harga) }}">
 
                             @error('harga')
                                 <div class="invalid-feedback d-block">

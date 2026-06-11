@@ -8,8 +8,9 @@
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
 
-            <a href="{{ route('rute.index') }}" class="btn btn-secondary px-2">
+            <a href="{{ route('rute.index') }}" class="btn btn-outline-secondary">
 
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
 
             </a>
@@ -28,14 +29,12 @@
 
                             <label for="bus_id" class="form-label">Nama Bus</label>
 
-                            <select name="bus_id" id="bus_id"
-                                class="form-select @error('bus_id') is-invalid @enderror">
+                            <select name="bus_id" id="bus_id" class="form-select @error('bus_id') is-invalid @enderror">
 
                                 <option value="">-- Pilih Bus --</option>
 
                                 @forelse ($buses as $bus)
-                                    <option value="{{ $bus->id }}"
-                                        {{ old('bus_id') == $bus->id ? 'selected' : '' }}>
+                                    <option value="{{ $bus->id }}" {{ old('bus_id') == $bus->id ? 'selected' : '' }}>
                                         {{ $bus->nama_bus }}</option>
                                 @empty
                                     <option value="">-- Tidak Ada Bus --</option>
@@ -44,13 +43,11 @@
                             </select>
 
                             @error('bus_id')
-
                                 <div class="invalid-feedback d-block">
 
                                     {{ $message }}
 
                                 </div>
-
                             @enderror
 
                         </div>
@@ -108,7 +105,7 @@
 
                                 </div>
                             @enderror
-                            
+
                         </div>
 
                         <div class="mb-3">
@@ -128,14 +125,14 @@
                             @enderror
 
                         </div>
-                        
+
                         <div class="mb-3">
 
                             <label for="harga" class="form-label">Harga</label>
 
                             <input type="number" name="harga" id="harga"
-                                class="form-control @error('harga') is-invalid @enderror"
-                                placeholder="Masukan Harga.." value="{{ old('harga') }}">
+                                class="form-control @error('harga') is-invalid @enderror" placeholder="Masukan Harga.."
+                                value="{{ old('harga') }}">
 
                             @error('harga')
                                 <div class="invalid-feedback d-block">

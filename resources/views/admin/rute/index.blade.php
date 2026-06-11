@@ -116,8 +116,11 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8" class="text-muted">Tidak ada Data</td>
-                            </tr>
+                                    <td colspan="8" class="py-5 text-muted">
+                                        <i class="bi bi-inbox fs-3 d-block mb-2"></i>
+                                        Tidak ada data rute
+                                    </td>
+                                </tr>
                         @endforelse
 
                     </tbody>
