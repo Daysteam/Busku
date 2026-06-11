@@ -47,7 +47,37 @@
 
                         <h4 class="text-center">Register</h4>
 
-                        <form action="" method="POST">
+                        <form action="{{ route('register') }}" method="POST">
+
+                            @csrf
+
+                            <div class="mb-3">
+
+                                <label for="username" class="form-label">Username</label>
+
+                                <div class="input-group">
+
+                                    <div class="input-group-text">
+
+                                        <i class="bi bi-person"></i>
+
+                                    </div>
+
+                                    <input type="text" name="username" id="username" placeholder="Masukan Username..." class="form-control @error('username')  is-invalid  @enderror" value="{{ old('username') }}">
+
+                                </div>
+
+                                @error('username')
+
+                                    <div class="invalid-feedback d-block">
+
+                                        {{ $message }}
+
+                                    </div>
+
+                                @enderror
+
+                            </div>
 
                             <div class="mb-3">
 
@@ -57,9 +87,19 @@
 
                                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
 
-                                    <input type="text" name="email" id="email" class="form-control" placeholder="Masukan username...">
+                                    <input type="text" name="email" id="email" class="form-control @error('email') is-invalid  @enderror" placeholder="Masukan email..." value="{{ old('email') }}">
 
                                 </div>
+
+                                @error('email')
+
+                                    <div class="invalid-feedback d-block">
+
+                                        {{ $message }}
+
+                                    </div>
+
+                                @enderror
 
                             </div>
 
@@ -71,7 +111,7 @@
 
                                     <span class="input-group-text"><i class="bi bi-lock"></i></span>
                                     
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukan password...">
+                                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukan password..." value="{{ old('password') }}">
 
                                     <button class="btn btn-outline-secondary" type="button" id="passwordBtn">
 
@@ -80,6 +120,16 @@
                                     </button>
                                     
                                 </div>
+
+                                @error('password')
+                                    
+                                    <div class="invalid-feedback d-block">
+
+                                        {{ $message }}
+
+                                    </div>
+
+                                @enderror
 
                             </div>
 
@@ -91,7 +141,7 @@
 
                                     <span class="input-group-text"><i class="bi bi-check-circle"></i></span>
                                     
-                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Masukan ulang password...">
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Masukan ulang password..." value="{{ old('password_confirmation') }}">
 
                                     <button class="btn btn-outline-secondary" type="button" id="passwordConsBtn">
 
@@ -103,7 +153,7 @@
 
                             </div>
 
-                            <button class="btn btn-primary px-2 w-100">
+                            <button class="btn btn-primary px-2 w-100 mt-2">
                                 
                                 Register
 

@@ -32,7 +32,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'username.required' => 'Username wajib diisi',
-            'username.unique' => 'Username sudah ada',
+            'username.unique' => 'Username sudah ada',  
             'email.required' => 'Email wajib diisi',
             'email.email' => 'Email harus menggunakan @',
             'email.unique' => 'Email sudah digunakan'

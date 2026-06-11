@@ -59,7 +59,7 @@
 
                                     <span class="input-group-text"><i class="bi bi-envelope"></i></span>
 
-                                    <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror " placeholder="Masukan username...">
+                                    <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror " placeholder="Masukan email...">
 
                                 </div>
                                 
@@ -110,7 +110,7 @@
 
                             </button>
 
-                            <p class="text-muted text-center mt-3 mb-0">Belum Punya Akun? <a href="{{ route('register-page') }}" class="text-primary text-decoration-none">Daftar</a></p>
+                            <p class="text-muted text-center mt-3 mb-0">Belum Punya Akun? <a href="{{ route('register') }}" class="text-primary text-decoration-none">Daftar</a></p>
 
                         </form>
 
