@@ -36,9 +36,8 @@ class Sidebar extends Component
             ];
         } elseif(auth()->user()->role === RoleEnum::CUSTOMER->value) {
             $this->links = [
-                ['url' => 'dashboard', 'label' => 'Dashbaord'],
-                ['url' => 'Cari bus', 'label' => 'Cari Bus'],
-                ['url' => 'Pemesanan', 'label' => 'Pemesanan'],
+                ['url' => route('search-bus.index'), 'label' => 'Cari Bus', 'route' => 'search-bus.*', 'icon' => 'bi-bus-front'],
+                ['url' => route('qr-code.index'), 'label' => 'Pemesanan', 'route' => 'qr-code.*', 'icon' => 'bi-list-ul'],
                 ['url' => route('account.edit'), 'label' => 'Akun Saya', 'route' => 'account.*', 'icon' => 'bi-person'],
             ];
         }

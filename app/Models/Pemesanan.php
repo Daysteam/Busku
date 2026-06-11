@@ -17,7 +17,7 @@ class Pemesanan extends Model
         'jumlah_tiket',
         'total_harga',
         'status',
-        'kode_bus',
+        'kode_pemesanan',
         'qr_code'
     ];
 

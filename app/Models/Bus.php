@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Bus extends Model
 {
@@ -13,6 +14,7 @@ class Bus extends Model
 
     protected $fillable = [
         'kode_bus',
+        'user_id',
         'nama_bus',
         'jumlah_kursi',
         'tipe_bus',
@@ -27,5 +29,10 @@ class Bus extends Model
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function ruteUtama():HasOne
+    {
+        return $this->hasOne(Rute::class)->latestOfMany();
     }
 }
