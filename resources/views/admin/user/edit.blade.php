@@ -8,8 +8,9 @@
 
         <div class="col-12 col-sm-9 col-md-6 col-lg-5">
 
-            <a href="{{ route('user.index') }}" class="btn btn-secondary px-2">
+            <a href="{{ route('user.index') }}" class="btn btn-outline-secondary">
 
+                <i class="bi bi-arrow-left me-1"></i>
                 Kembali
 
             </a>
@@ -35,13 +36,11 @@
                                 placeholder="Masukan Username.." value="{{ old('username', $user->username) }}">
 
                             @error('username')
-
                                 <div class="invalid-feedback d-block">
 
                                     {{ $message }}
 
                                 </div>
-
                             @enderror
 
                         </div>
@@ -51,8 +50,8 @@
                             <label for="email" class="form-label">Email</label>
 
                             <input type="email" name="email" id="email"
-                                class="form-control @error('email') is-invalid @enderror"
-                                placeholder="Masukan Email.." value="{{ old('email', $user->email) }}">
+                                class="form-control @error('email') is-invalid @enderror" placeholder="Masukan Email.."
+                                value="{{ old('email', $user->email) }}">
 
 
                             @error('email')
@@ -70,8 +69,7 @@
                             <label for="password" class="form-label">Password</label>
 
                             <input type="password" name="password" id="password"
-                                class="form-control @error('password') is-invalid @enderror"
-                                value="{{ old('password') }}">
+                                class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}">
 
 
                             @error('password')
