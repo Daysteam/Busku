@@ -108,13 +108,19 @@
                                                 Batal
                                             </span>
                                         @break
+
+                                        @case('selesai')
+                                            <div class="badge badge-primary">
+                                                Selesai
+                                            </div>
+                                        @break
                                     @endswitch
 
                                 </td>
 
                                 <td>
 
-                                    <div class="d-flex justify-content-center gap-1 flex-wrap">
+                                    <div class="d-flex justify-content-center gap-1 flex-nowrap">
 
                                         <a href="{{ route('pemesanan.show', $pemesanan->id) }}"
                                             class="btn btn-warning btn-sm btn-action">
