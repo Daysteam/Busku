@@ -21,7 +21,7 @@
                     </li>
                 @endforeach
                 <li class="nav-item">
-                    <a href="{{ route('login-page') }}" class="nav-link btn btn-primary rounded-pill px-3">Login</a>
+                    <a href="{{ route('login') }}" class="nav-link btn btn-primary rounded-pill px-3">Login</a>
                 </li>
             </ul>
         </div>
