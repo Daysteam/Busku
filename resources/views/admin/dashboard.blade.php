@@ -23,7 +23,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -44,7 +44,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -65,7 +65,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -86,7 +86,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -107,7 +107,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -128,7 +128,7 @@
 
     <div class="col-12 col-md-6 col-lg-4">
 
-        <div class="card stats-card border-0 shadow-sm">
+        <div class="card static-card border-0 shadow-sm">
 
             <div class="card-body d-flex align-items-center">
 
@@ -160,7 +160,7 @@
         <div class="row g-3">
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100 stats-card">
+                <div class="border rounded-3 p-3 h-100 static-card">
                     <h6 class="fw-semibold mb-1">Pemesanan Baru</h6>
                     <h3 class="fw-bold text-primary mb-0">{{ $totalTiketHariIni }}</h3>
                     <small class="text-muted">Hari ini</small>
@@ -168,7 +168,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100 stats-card">
+                <div class="border rounded-3 p-3 h-100 static-card">
                     <h6 class="fw-semibold mb-1">Menunggu Pembayaran</h6>
                     <h3 class="fw-bold text-warning mb-0">{{ $totalTiketDibayarHariIni }}</h3>
                     <small class="text-muted">Perlu diproses</small>
@@ -176,7 +176,7 @@
             </div>
 
             <div class="col-md-4">
-                <div class="border rounded-3 p-3 h-100 stats-card">
+                <div class="border rounded-3 p-3 h-100 static-card">
                     <h6 class="fw-semibold mb-1">Pendapatan Hari Ini</h6>
                     <h3 class="fw-bold text-success mb-0">Rp {{ number_format($totalPendapatanHariIni,'0',',','.') }}</h3>
                     <small class="text-muted">Transaksi berhasil</small>
@@ -245,6 +245,12 @@
                                                     <span class="badge badge-cancel">
                                                         Batal
                                                     </span>
+                                                @break
+
+                                                @case('selesai')
+                                                    <div class="badge badge-primary">
+                                                        Selesai
+                                                    </div>
                                                 @break
                                             @endswitch
                                     </td>
