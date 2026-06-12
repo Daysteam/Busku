@@ -11,7 +11,7 @@
 
                 <div class="col-lg-6 text-white">
 
-                    <h1 class="display-3 fw-bold">
+                    <h1 class="display-3 fw-bold mt-2 mt-md-0">
                         Pesan Tiket Bus
                         Lebih Cepat
                     </h1>
