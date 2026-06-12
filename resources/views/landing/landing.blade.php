@@ -295,7 +295,7 @@
 
                         <div class="card static-card">
 
-                            <img src="{{ $bus->image ? asset('storage/' . $bus->image) : 'https://placehold.co/600x400?text=Image+Not+Found' }}" class="card-img-top">
+                            <img src="{{ $bus->image ? asset('storage/' . $bus->image) : 'https://placehold.co/600x340?text=Image+Not+Found' }}" class="card-img-top">
 
                             <div class="card-body">
 
