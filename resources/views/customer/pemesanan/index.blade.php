@@ -92,7 +92,10 @@
                             @break
                         @endswitch
 
-                        <div class="ms-md-2 mt-2 mt-md-0 d-flex flex-row flex-md-column gap-2 ms-2">
+                        @if ($pemesanan->status === 'selesai')
+                            
+                        @else
+                            <div class="ms-md-2 mt-2 mt-md-0 d-flex flex-row flex-md-column gap-2 ms-2">
 
 
                             <a href="{{ route('qr-code.show', $pemesanan->id) }}" class="btn btn-warning">
@@ -115,6 +118,7 @@
                             </form>
 
                         </div>
+                        @endif
 
                     </div>
 

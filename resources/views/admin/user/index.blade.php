@@ -79,7 +79,7 @@
 
                         <tr>
                             <th>No</th>
-                            <th>Username</th>
+                            <th class="text-start">Username</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Dibuat</th>
@@ -93,7 +93,7 @@
                         @forelse ($users as $index => $user)
                             <tr>
                                 <td>{{ $users->firstItem() + $index }}</td>
-                                <td>{{ $user->username }}</td>
+                                <td class="text-start">{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>{{ $user->created_at->format('d-m-Y') }}</td>
@@ -134,8 +134,6 @@
         </div>
 
     </div>
-
-    <div class="mt-4">
         
         {{ $users->links() }}
 

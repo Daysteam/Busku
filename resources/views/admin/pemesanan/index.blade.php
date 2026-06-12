@@ -142,7 +142,7 @@
 
                                         </form>
 
-                                        <form action="{{ route('pemesanan.cancelled', $pemesanan->id) }}" method="POST">
+                                        <form action="{{ route('pemesanan.cancelle', $pemesanan->id) }}" method="POST">
 
                                             @csrf
 
