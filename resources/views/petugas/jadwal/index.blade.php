@@ -43,7 +43,7 @@
                         <tr>
                             <td colspan="5" class="py-5 text-muted">
                                 <i class="bi bi-inbox fs-3 d-block mb-2"></i>
-                                Tidak ada data user
+                                Tidak ada data jadwal
                             </td>
                         </tr>
                     @endforelse
