@@ -63,6 +63,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/cari-bus',[SearchBusController::class,'index'])->name('search-bus.index');
         Route::get('/cari-bus/{rute}',[SearchBusController::class,'create'])->name('search-bus.create');
         Route::post('/cari-bus/{rute}',[PemesananController::class,'store'])->name('search-bus.store');
+        Route::post('/cari-bus/cancelled/{pemesanan}', [PemesananController::class,'cancelled'])->name('pemesanan.cancelled');
         Route::get('/qr-code',[PemesananController::class,'myTicket'])->name('qr-code.index');
         Route::get('/qr-code/{pemesanan}',QrController::class)->name('qr-code.show');
     });

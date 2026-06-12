@@ -88,8 +88,17 @@ class PemesananController extends Controller
     public function confirm(Pemesanan $pemesanan){
 
         try {
-             if ($pemesanan->status === 'dibayar'){
+
+            if ($pemesanan->status === 'dibayar'){
                 return back()->with('error','Tiket sudah dibayar');
+            }
+
+            if ($pemesanan->status === 'selesai'){
+                return back()->with('error','Tiket Sudah Selesai');
+            }
+
+            if ($pemesanan->status === 'batal'){
+                return back()->with('error','Tiket Sudah Batal');
             }
 
             $pemesanan->status = 'dibayar';
@@ -104,8 +113,13 @@ class PemesananController extends Controller
 
     public function cancelled(Pemesanan $pemesanan){
         try {
+
             if($pemesanan->status === 'batal'){
                 return back()->with('error','Tiket sudah dibatalkan');
+            }
+
+            if($pemesanan->status === 'selesai'){
+                return back()->with('error','Tiket sudah selesai');
             }
     
             $pemesanan->status = 'batal';
