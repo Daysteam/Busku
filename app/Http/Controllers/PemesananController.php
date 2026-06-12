@@ -128,6 +128,12 @@ class PemesananController extends Controller
         try {
             $pemesanan->delete();
 
+            $fileName = 'qr/' . $pemesanan->kode_pemesanan . '.svg';
+
+            if (Storage::disk('public')->exists($fileName)) {
+                Storage::disk('public')->delete($fileName);
+            }
+
             return redirect()->route('pemesanan.index')->with('success','Berhasil menghapus tiket');
         } catch(\Exception $e) {
             return back()
