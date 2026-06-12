@@ -133,6 +133,10 @@
 
     </div>
 
-    {{ $rutes->links() }}
+    <div class="mt-4">
+
+        {{ $rutes->links() }}
+
+    </div>
 
 @endsection

@@ -133,6 +133,10 @@
 
     </div>
 
-    {{ $buses->links() }}
+    <div class="mt-4">
+
+        {{ $buses->links() }}
+
+    </div>
 
 @endsection

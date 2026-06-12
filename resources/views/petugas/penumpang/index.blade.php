@@ -98,6 +98,10 @@
 
     </div>
 
-    {{ $penumpangs->links() }}
+    <div class="mt-4">
+
+        {{ $penumpangs->links() }}
+
+    </div>
 
 @endsection
