@@ -75,6 +75,13 @@ class ScanController extends Controller
                 ], 400);
             }
 
+            if($pemesanan->status === 'batal'){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tiket telah dibatalkan'
+                ], 400);
+            }
+
             $pemesanan->update([
                 'status' => 'selesai'
             ]);
