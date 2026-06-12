@@ -6,11 +6,13 @@
 
     <div class="mt-4 mb-3">
 
-        <h4 class="text-bold mb-0>Daftar Pemesanan Tiket Saya</h4>
-                
-                <p class="text-muted">
-            Tempat
-            untuk melihat tiket yang telah dipesan</p>
+        <h4 class="text-bold mb-0">Daftar Pemesanan Tiket Saya</h4>
+
+        <p class="text-muted">
+            Tempat untuk melihat tiket yang telah dipesan
+        </p>
+
+        </h4>
 
     </div>
 
@@ -30,7 +32,7 @@
 
                     <div class="col-md-6">
 
-                        <h5 class="fw-bold mb-1">
+                        <h5 class="fw-bold mb-1 mt-2 mt-md-2">
                             {{ $pemesanan->rute->bus->nama_bus }} ({{ $pemesanan->rute->bus->tipe_bus }})
                         </h5>
 
@@ -62,7 +64,7 @@
 
                     </div>
 
-                    <div class="col-md-4 text-md-end mt-3 mt-md-0 flex-column">
+                    <div class="col-md-4 text-md-end mt-3 mt-md-0 d-flex justify-content-end align-items-center">
 
                         @switch($pemesanan->status)
                             @case('pending')
@@ -90,11 +92,29 @@
                             @break
                         @endswitch
 
-                        <a href="{{ route('qr-code.show', $pemesanan->id) }}" class="btn btn-warning">
+                        <div class="ms-md-2 mt-2 mt-md-0 d-flex flex-row flex-md-column gap-2 ms-2">
 
-                            <i class="bi bi-qr-code fs-3"></i>
 
-                        </a>
+                            <a href="{{ route('qr-code.show', $pemesanan->id) }}" class="btn btn-warning">
+    
+                                <i class="bi bi-qr-code fs-4"></i>
+    
+                            </a>
+    
+                            <form action="{{ route('pemesanan.cancelled', $pemesanan->id) }}" method="POST">
+    
+                                @csrf
+    
+                                <button class="btn btn-secondary" type="button"
+                                    onclick="confirmCancelled(this)">
+    
+                                    <i class="bi bi-x-circle fs-4"></i>
+    
+                                </button>
+    
+                            </form>
+
+                        </div>
 
                     </div>
 
@@ -122,4 +142,4 @@
 
         </div>
 
-@endsection
+    @endsection
