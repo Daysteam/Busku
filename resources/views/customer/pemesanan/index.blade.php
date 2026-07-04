@@ -92,32 +92,31 @@
                             @break
                         @endswitch
 
-                        @if ($pemesanan->status === 'selesai')
-                            
-                        @else
+                        @if ($pemesanan->status != 'selesai')
+                        
                             <div class="ms-md-2 mt-2 mt-md-0 d-flex flex-row flex-md-column gap-2 ms-2">
 
 
-                            <a href="{{ route('qr-code.show', $pemesanan->id) }}" class="btn btn-warning">
-    
-                                <i class="bi bi-qr-code fs-4"></i>
-    
-                            </a>
-    
-                            <form action="{{ route('pemesanan.cancelled', $pemesanan->id) }}" method="POST">
-    
-                                @csrf
-    
-                                <button class="btn btn-secondary" type="button"
-                                    onclick="confirmCancelled(this)">
-    
-                                    <i class="bi bi-x-circle fs-4"></i>
-    
-                                </button>
-    
-                            </form>
+                                <a href="{{ route('qr-code.show', $pemesanan->id) }}" class="btn btn-warning">
 
-                        </div>
+                                    <i class="bi bi-qr-code fs-4"></i>
+
+                                </a>
+
+                                <form action="{{ route('pemesanan.cancelled', $pemesanan->id) }}" method="POST">
+
+                                    @csrf
+
+                                    <button class="btn btn-secondary" type="button" onclick="confirmCancelled(this)">
+
+                                        <i class="bi bi-x-circle fs-4"></i>
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
                         @endif
 
                     </div>
