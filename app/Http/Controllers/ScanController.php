@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateScanRequest;
 use App\Models\Pemesanan;
+use Carbon\Carbon;
 
 class ScanController extends Controller
 {
@@ -79,6 +80,13 @@ class ScanController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'Tiket telah dibatalkan'
+                ], 400);
+            }
+
+            if($pemesanan->ruteUtama->tanggal_berangkat != Carbon::now()){
+                 return response()->json([
+                    'success' => false,
+                    'message' => 'Belum saatnya tiket digunakan'
                 ], 400);
             }
 
